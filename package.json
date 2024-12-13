@@ -1,5 +1,5 @@
 {
-  "name": "json-viewer",
+  "name": "@youlead-bow/json-viewer",
   "version": "0.1.0",
   "description": "Extensible JSON Viewer",
   "main": "dist/json-viewer.es.js",
@@ -13,17 +13,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/youlead-bow/json-viewer.git"
+    "url": "git+https://github.com/youlead-bow/json-viewer.git"
   },
   "keywords": [
     "json",
     "viewer",
     "json-viewer"
   ],
-  "author": "Youlead",
+  "author": "youlead-bow (https://github.com/youlead-bow)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/youlead-bow/json-viewer"
+    "url": "https://github.com/youlead-bow/json-viewer/issues"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.3.0",
