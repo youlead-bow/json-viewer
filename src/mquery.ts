@@ -1,5 +1,5 @@
 
-export class MiniQuery implements SonjReview.IMiniQuery {
+export class MiniQuery implements JsonViewer.IMiniQuery {
 
     public elem: HTMLElement; 
 

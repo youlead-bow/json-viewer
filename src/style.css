@@ -11,8 +11,12 @@
     --sonj-primary-bgcolor: #fff;
     --sonj-secondary-bgcolor: #dedede;
     --sonj-secondary-color: #808080;
+    --sonj-prop-menu-background: var(--sonj-primary-bgcolor);
+    --sonj-prop-menu-border: var(--sonj-secondary-bgcolor);
+    --sonj-prop-menu-active: var(--sonj-secondary-bgcolor);
+    --sonj-prop-menu-active-color: #000;
     /*sizes*/
-    --sonj-prop-indent: 12px; 
+    --sonj-prop-indent: 12px;
 }
 
 .sonj-container {
@@ -81,4 +85,71 @@
 
 .prop-clickable {
     cursor: pointer;
+}
+
+.prop-group {
+    margin: 2px 0 0 var(--sonj-prop-indent);
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.prop-menu-wrapper {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+}
+.prop-menu-button {
+    border-radius: 5px;
+    padding: 0 5px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    cursor: pointer;
+}
+.prop-header:hover .prop-menu-button {
+    opacity: 1;
+}
+.prop-header .prop-menu-button:hover,
+.prop-menu-open .prop-menu-button {
+    border: 0px solid var(--sonj-prop-menu-border);
+    background-color: var(--sonj-prop-menu-active);
+    opacity: 1;
+}
+.prop-menu {
+    color: var(--sonj-secondary-color);
+    position: absolute;
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: var(--sonj-prop-menu-background);
+    border: 1px solid var(--sonj-prop-menu-border);
+}
+.prop-menu-item {
+    padding: 2px 5px;
+}
+.prop-menu-item.enabled:hover {
+    background-color: var(--sonj-prop-menu-active);
+    color: var(--sonj-prop-menu-active-color);
+    cursor: pointer;
+}
+
+.prop-expanded > * > .prop-value-teaser {
+    display: none;
+}
+.prop-value-teaser {
+    margin: 0 5px;
+    color: var(--sonj-primary-color);
+}
+
+.prop-truncated {
+    position: relative;
+}
+.prop-length {
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.prop-name:hover .prop-length,
+.prop-value:hover .prop-length {
+    opacity: 1;
 }

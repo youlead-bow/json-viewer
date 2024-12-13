@@ -1,4 +1,3 @@
-import { injectCss } from "../helpers";
 import { $ } from "../mquery";
 
 /**
@@ -9,16 +8,14 @@ import { $ } from "../mquery";
  * @param maxPropertiesCount Maximum number of properties to render
  * @returns Initialized plugin
  */
-export const propertyGroups: SonjReview.IPropertyGroupsPluginInitializer = (maxPropertiesCount) => {
-
-    injectCss("propertyGroups", cssCode);
+export const propertyGroups: JsonViewer.IPropertyGroupsPluginInitializer = (maxPropertiesCount) => {
 
     return {
 
         beforeRenderProperties: (context: IGroupsContext, propertiesToRender) => {
             // store collection of properties for afterRenderProperties processing
             context.propsToRender = propertiesToRender;
-            // render only max number of properties 
+            // render only max number of properties
             return propertiesToRender.slice(0, maxPropertiesCount);
         },
 
@@ -63,14 +60,6 @@ export const propertyGroups: SonjReview.IPropertyGroupsPluginInitializer = (maxP
     }
 }
 
-const cssCode = `
-.prop-group {
-    margin: 2px 0 0 var(--sonj-prop-indent);
-    display: inline-block;
-    white-space: nowrap;
-}
-`;
-
-interface IGroupsContext extends SonjReview.IPluginContext {
+interface IGroupsContext extends JsonViewer.IPluginContext {
     propsToRender?: string[];
 }

@@ -1,7 +1,7 @@
 
 const jsonPattern = /^[\{\[].*?[\}\]]$/;
 
-export const parseJsonValue: SonjReview.IPropertyMenuItem = {
+export const parseJsonValue: JsonViewer.IPropertyMenuItem = {
     text: "Parse JSON",
     isHidden: context => typeof(context.node.data) != "string" || !jsonPattern.test(context.node.data),
     onClick: context => {

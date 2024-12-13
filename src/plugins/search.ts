@@ -1,7 +1,7 @@
 
-export const search: SonjReview.ISearchPluginInitializer = (data, options?: SonjReview.ISearchOptions) => {
+export const search: JsonViewer.ISearchPluginInitializer = (data, options?: JsonViewer.ISearchOptions) => {
 
-    let rootNode: SonjReview.IJsonViewer | null = null;
+    let rootNode: JsonViewer.IJsonViewer | null = null;
 
     let pathsToShow: string[][] | null = null;
 
@@ -52,7 +52,7 @@ export const search: SonjReview.ISearchPluginInitializer = (data, options?: Sonj
 }
 
 
-function searchInternal(data: any, root: string[], query: string, options?: SonjReview.ISearchOptions): Promise<string[][]> {
+function searchInternal(data: any, root: string[], query: string, options?: JsonViewer.ISearchOptions): Promise<string[][]> {
     const isMatching = getMatcher(query, !!options?.caseSensitive);
     return new Promise((resolve, reject) => {
         const result = getValueLocations(data, root, isMatching, options);
@@ -66,7 +66,7 @@ function searchInternal(data: any, root: string[], query: string, options?: Sonj
  * @param path Current path
  * @param isMatching Query matcher
  */
-function getValueLocations(data: any, path: string[], isMatching: IMatcher, options?: SonjReview.ISearchOptions): string[][] {
+function getValueLocations(data: any, path: string[], isMatching: IMatcher, options?: JsonViewer.ISearchOptions): string[][] {
     let results = [] as string[][];
 
     switch (typeof data) {

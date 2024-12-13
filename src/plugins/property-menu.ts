@@ -1,4 +1,3 @@
-import { injectCss } from "../helpers";
 import { $, MiniQuery } from "../mquery";
 import * as availableMenuItems from "./property-menu-items"
 
@@ -6,17 +5,14 @@ import * as availableMenuItems from "./property-menu-items"
  * Plugin for menu rendered next to each property
  * @returns Menu plugin
  */
-export const propertyMenu: SonjReview.IPropertyMenuPluginInitializer = (menuItems: SonjReview.IPropertyMenuItem[] = []): SonjReview.IPlugin => {
-
-    injectCss("propertyMenu", cssCode);
-
+export const propertyMenu: JsonViewer.IPropertyMenuPluginInitializer = (menuItems: JsonViewer.IPropertyMenuItem[] = []): JsonViewer.IPlugin => {
     return new PropertyMenu(menuItems);
 }
 
 /**
  * Plugin main class
  */
-class PropertyMenu implements SonjReview.IPlugin {
+class PropertyMenu implements JsonViewer.IPlugin {
 
     /**
      * Currently visible menu (it can be the only one)
@@ -26,9 +22,9 @@ class PropertyMenu implements SonjReview.IPlugin {
     /**
      * Root node
      */
-    private rootNode: SonjReview.IJsonViewer;
+    private rootNode: JsonViewer.IJsonViewer;
 
-    constructor(private menuItems: SonjReview.IPropertyMenuItem[] = []) {
+    constructor(private menuItems: JsonViewer.IPropertyMenuItem[] = []) {
         document.body.addEventListener("click", () => this.closeActiveMenu());
 
         // adding default menu items
@@ -39,14 +35,14 @@ class PropertyMenu implements SonjReview.IPlugin {
         }
     }
 
-    nodeInit(context: SonjReview.IPluginContext) {
+    nodeInit(context: JsonViewer.IPluginContext) {
         if (this.rootNode == null) {
             // the first one is the root one
             this.rootNode = context.node;
         }
     }
 
-    afterRender(context: SonjReview.IPluginContext) {
+    afterRender(context: JsonViewer.IPluginContext) {
         const btn = $("span")
             .text("...")
             .addClass("prop-menu-button");
@@ -78,7 +74,7 @@ class PropertyMenu implements SonjReview.IPlugin {
      * @param wrapper Menu wrapper
      * @param context Context for current node
      */
-    private renderMenu(evt: MouseEvent, wrapper: MiniQuery, context: SonjReview.IPluginContext) {
+    private renderMenu(evt: MouseEvent, wrapper: MiniQuery, context: JsonViewer.IPluginContext) {
         evt.stopPropagation();
 
         this.closeActiveMenu();
@@ -138,50 +134,3 @@ class PropertyMenu implements SonjReview.IPlugin {
  * Exposing menu items (they can be used with custom menu items)
  */
 propertyMenu.items = availableMenuItems;
-
-const cssCode = `
-* {
-    --sonj-prop-menu-background: var(--sonj-primary-bgcolor);
-    --sonj-prop-menu-border: var(--sonj-secondary-bgcolor);
-    --sonj-prop-menu-active: var(--sonj-secondary-bgcolor);
-    --sonj-prop-menu-active-color: #000;
-}
-.prop-menu-wrapper {
-    display: inline-block;
-    position: relative;
-    margin-left: 5px;
-}
-.prop-menu-button {
-    border-radius: 5px;
-    padding: 0 5px;
-    opacity: 0;
-    transition: opacity 0.5s;
-    cursor: pointer;
-}
-.prop-header:hover .prop-menu-button {
-    opacity: 1;
-}
-.prop-header .prop-menu-button:hover,
-.prop-menu-open .prop-menu-button {
-    border: 0px solid var(--sonj-prop-menu-border);
-    background-color: var(--sonj-prop-menu-active);
-    opacity: 1;
-}
-.prop-menu {
-    color: var(--sonj-secondary-color);
-    position: absolute;
-    z-index: 1000;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: var(--sonj-prop-menu-background);
-    border: 1px solid var(--sonj-prop-menu-border);
-}
-.prop-menu-item {
-    padding: 2px 5px;
-}
-.prop-menu-item.enabled:hover {
-    background-color: var(--sonj-prop-menu-active);
-    color: var(--sonj-prop-menu-active-color);
-    cursor: pointer;
-}
-`;

@@ -1,6 +1,6 @@
 import { MiniQuery, $ } from "./mquery";
 
-export class JsonViewer implements SonjReview.IJsonViewer {
+export class JsonViewer implements JsonViewer.IJsonViewer {
 
     /**
      * Current node path
@@ -35,7 +35,7 @@ export class JsonViewer implements SonjReview.IJsonViewer {
     /**
      * Plugin context data
      */
-    public pluginContext: { [key: number]: SonjReview.IPluginContext } = {};
+    public pluginContext: { [key: number]: JsonViewer.IPluginContext } = {};
 
     /**
      * Constructor
@@ -43,7 +43,7 @@ export class JsonViewer implements SonjReview.IJsonViewer {
      * @param path Node path (with name in the last chunk/part)
      * @param plugins Collection of plugins
      */
-    constructor(public data: any, path: string[] | string, public plugins: SonjReview.IPlugin[]) {
+    constructor(public data: any, path: string[] | string, public plugins: JsonViewer.IPlugin[]) {
         this.path = Array.isArray(path) ? path : [path];
         this.nodeName = this.path[this.path.length - 1];
         this.init();
@@ -126,7 +126,7 @@ export class JsonViewer implements SonjReview.IJsonViewer {
 
     private renderInternal() {
 
-        const dataToRender: SonjReview.INameValuePair = {
+        const dataToRender: JsonViewer.INameValuePair = {
             name: this.nodeName,
             value: this.data,
         }

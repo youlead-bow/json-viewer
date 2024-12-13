@@ -1,7 +1,4 @@
-# sonj-review / json-viewer
-[![npm](https://img.shields.io/npm/dm/sonj-review?label=npm%20downloads)](https://www.npmjs.com/package/sonj-review)
-[![npm version](https://img.shields.io/npm/v/sonj-review?color=blue)](https://www.npmjs.com/package/sonj-review)
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/maxwroc/sonj-review/Pull%20Request%20Testing/master?label=tests)
+# json-viewer
 
 Yet another json viewer lib. 
 
@@ -19,15 +16,12 @@ Yet another json viewer lib.
 * Extensible
 * Easy to adjust CSS
 
-## Demo 
-
-https://maxwroc.github.io/sonj-review/
 
 ## Initialization
 
 ```js
 let plugins = [];
-let jsonViewer = new SonjReview.JsonViewer(data, "NameOfTheRootNode", plugins);
+let jsonViewer = new JsonViewer.JsonViewer(data, "NameOfTheRootNode", plugins);
 jsonViewer.render("container-id");
 ```
 
@@ -41,7 +35,7 @@ By default JSON nodes are rendered collapsed. This plugin alows you to change it
 
 ```js
 // root node and it's children will be rendered open
-const autoExpandPlugin = SonjReview.plugins.autoExpand(2);
+const autoExpandPlugin = JsonViewer.plugins.autoExpand(2);
 ```
 ![image](https://user-images.githubusercontent.com/8268674/124646232-4b986b80-de8c-11eb-822a-8bf9b038ebe6.png)
 
@@ -50,7 +44,7 @@ const autoExpandPlugin = SonjReview.plugins.autoExpand(2);
 Allows you to find a string in the JSON regardless if it is in the property name or value.
 
 ```js
-const searchPlugin = SonjReview.plugins.search(
+const searchPlugin = JsonViewer.plugins.search(
     data, {
         // whether to turn on/off case-sensitive search
         caseSensitive: false
@@ -66,7 +60,7 @@ Limit the number of rendered child nodes. This way your browser won't stuck tryi
 
 ```js
 // limit number of rendered child nodes to 10 (and then group by 10)
-const groupsPlugin = SonjReview.plugins.propertyGroups(10);
+const groupsPlugin = JsonViewer.plugins.propertyGroups(10);
 ```
 
 ![image](https://user-images.githubusercontent.com/8268674/124648967-cd3dc880-de8f-11eb-9e76-4bc1478c5369.png)
@@ -78,7 +72,7 @@ Displays additional info next to the collapsed node. You can control whether the
 
 ```js
 // root node and it's children will be rendered open
-const teaserPlugin = SonjReview.plugins.propertyTeaser({ 
+const teaserPlugin = JsonViewer.plugins.propertyTeaser({ 
     properties: { 
         // list of the property names (their values will be shown whenever they exist)
         names: ["fname", "sname", "email"], 
@@ -104,7 +98,7 @@ const teaserPlugin = SonjReview.plugins.propertyTeaser({
 If you know that your JSON may contain long values/strings this plugin will help you.
 
 ```js
-const truncatePlugin = SonjReview.plugins.truncate({ 
+const truncatePlugin = JsonViewer.plugins.truncate({ 
     // max length for property name
     maxNameLength: 20,
     // max length for property value
@@ -125,7 +119,7 @@ Handy menu allowing you to do various actions. You can easily add your custom on
 
 ```js
 // default menu items (copy name/value, copy formatted JSON)
-const menuPlugin = SonjReview.plugins.propertyMenu();
+const menuPlugin = JsonViewer.plugins.propertyMenu();
 ```
 
 ![image](https://user-images.githubusercontent.com/8268674/124652129-a4b7cd80-de93-11eb-83a6-c4ae483ceb35.png)
@@ -143,8 +137,8 @@ const menuPlugin = SonjReview.plugins.propertyMenu();
 This menu item has to be added manually (it is not a part of the default menu items set). It appears only when value looks like a JSON object.
 
 ```typescript
-const menuItems = SonjReview.plugins.propertyMenu.items;
-const menuPlugin = SonjReview.plugins.propertyMenu([
+const menuItems = JsonViewer.plugins.propertyMenu.items;
+const menuPlugin = JsonViewer.plugins.propertyMenu([
     menuItems.parseJsonValue, // menu item for converting JSON strings
     menuItems.copyName,
     menuItems.copyValue,
@@ -158,8 +152,8 @@ Sorts values (in case of arrays) or properties (in case of objects). Sorting twi
 This menu item has to be added manually.
 
 ```typescript
-const menuItems = SonjReview.plugins.propertyMenu.items;
-const menuPlugin = SonjReview.plugins.propertyMenu([
+const menuItems = JsonViewer.plugins.propertyMenu.items;
+const menuPlugin = JsonViewer.plugins.propertyMenu([
     menuItems.sortProperties, // sorting menu item
     menuItems.copyName,
     menuItems.copyValue,
@@ -183,27 +177,12 @@ const copyFormattedValue: IPropertyMenuItem = {
 Initialization with custom menu item example
 
 ```js
-const menuPlugin = SonjReview.plugins.propertyMenu([
+const menuPlugin = JsonViewer.plugins.propertyMenu([
     // using one of the default menu items
-    SonjReview.plugins.propertyMenu.items.copyName,
+    JsonViewer.plugins.propertyMenu.items.copyName,
     // your custom menu item
     myCustomMenuItem,
     // using one of the default menu items
-    SonjReview.plugins.propertyMenu.items.copyFormattedValue,
+    JsonViewer.plugins.propertyMenu.items.copyFormattedValue,
 ]);
 ```
-
-## CDN
-
-* unpkg: [[sonj-review.min.js](https://unpkg.com/sonj-review/dist/sonj-review.min.js)]
-* jsdelivr: [[sonj-review.min.js](https://cdn.jsdelivr.net/npm/sonj-review/dist/sonj-review.min.js)]
-
-## Development
-
-This component is still under development so please be aware that there might be breaking changes in the next releases!
-
-## Feedback
-
-Like it? **Star it!**
-
-If something doesn't work or you have any suggestions how to improve it please create an issue on github.

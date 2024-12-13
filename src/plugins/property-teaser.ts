@@ -1,4 +1,3 @@
-import { injectCss } from "../helpers";
 import { $ } from "../mquery";
 
 /**
@@ -6,9 +5,7 @@ import { $ } from "../mquery";
  * @param options Plugin options
  * @returns Plugin instance
  */
-export const propertyTeaser: SonjReview.ITeaserPluginInitializer = (options) => {
-
-    injectCss("propertyTeaser", cssCode);
+export const propertyTeaser: JsonViewer.ITeaserPluginInitializer = (options) => {
 
     const getText = (data: any): string => {
         const parts = [
@@ -33,7 +30,7 @@ export const propertyTeaser: SonjReview.ITeaserPluginInitializer = (options) => 
 
 const getPropertyCount = (data: any) => Array.isArray(data) ? `[${data.length}]` : `{${Object.keys(data).length}}`;
 
-const getSelectedProperties = (data: any, options: SonjReview.ITeaserOptions) => {
+const getSelectedProperties = (data: any, options: JsonViewer.ITeaserOptions) => {
     if (!options.properties) {
         return "";
     }
@@ -48,16 +45,6 @@ const getSelectedProperties = (data: any, options: SonjReview.ITeaserOptions) =>
 
     return trimString(values.map(v => trimString(v, options.properties!.maxValueLength)).join(", "), options.maxTotalLenght);
 }
-
-const cssCode = `
-.prop-expanded > * > .prop-value-teaser {
-    display: none;
-}
-.prop-value-teaser {
-    margin: 0 5px;
-    color: var(--sonj-primary-color);
-}
-`;
 
 const trimString = (text: string, maxLength: number | undefined): string => {
     if (!maxLength || !text || text.length <= maxLength) {

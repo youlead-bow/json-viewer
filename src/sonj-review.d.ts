@@ -1,5 +1,5 @@
 
-declare module SonjReview {
+declare module JsonViewer {
 
     export var JsonViewer: IJsonViewerConstructor;
 
@@ -59,7 +59,7 @@ declare module SonjReview {
          */
         path: string[];
         
-        plugins: SonjReview.IPlugin[];
+        plugins: JsonViewer.IPlugin[];
 
         /**
          * Plugin context data
@@ -228,10 +228,10 @@ declare module SonjReview {
         (menuItems?: IPropertyMenuItem[]): IPlugin;
     }
     interface IPropertyMenuItem {
-        text: string | { (context: SonjReview.IPluginContext): string };
-        isDisabled?: (context: SonjReview.IPluginContext) => boolean;
-        isHidden?: (context: SonjReview.IPluginContext) => boolean;
-        onClick: (context: SonjReview.IPluginContext) => void;
+        text: string | { (context: JsonViewer.IPluginContext): string };
+        isDisabled?: (context: JsonViewer.IPluginContext) => boolean;
+        isHidden?: (context: JsonViewer.IPluginContext) => boolean;
+        onClick: (context: JsonViewer.IPluginContext) => void;
     }
     interface IMenuItems {
         parseJsonValue: IPropertyMenuItem,

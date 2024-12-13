@@ -1,14 +1,11 @@
 import { $ } from "../mquery";
-import { injectCss } from "../helpers";
 
 /**
  * Plugin for truncating long node name and/or value
  * @param options Plugin options
  * @returns Plugin instance
  */
-export const truncate: SonjReview.ITruncatePluginInitializer = (options) => {
-
-    injectCss("truncatePlugin", cssCode);
+export const truncate: JsonViewer.ITruncatePluginInitializer = (options) => {
 
     options = {
         maxNameLength: 20,
@@ -56,7 +53,7 @@ export const truncate: SonjReview.ITruncatePluginInitializer = (options) => {
     }
 }
 
-function addLengthInfoPill(context: SonjReview.IPluginContext, isNameElement: boolean, length: number, enableClickToExpand: boolean | string | undefined) {
+function addLengthInfoPill(context: JsonViewer.IPluginContext, isNameElement: boolean, length: number, enableClickToExpand: boolean | string | undefined) {
     const targetElem = $(context.node.header.elem.querySelector(isNameElement ? ".prop-name" : ".prop-value") as HTMLElement);
     targetElem.addClass("prop-truncated");
 
@@ -88,23 +85,7 @@ function formatBytes(bytes: number, decimals = 1): string {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + (sizes[i] ? " " + sizes[i] : "");
 }
 
-const cssCode = `
-.prop-truncated {
-    position: relative;
-}
-.prop-length {
-    position: absolute;
-    right: 0;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-.prop-name:hover .prop-length,
-.prop-value:hover .prop-length {
-    opacity: 1;
-}
-`;
-
-interface ITruncateContext extends SonjReview.IPluginContext {
+interface ITruncateContext extends JsonViewer.IPluginContext {
     fullNameLength?: number;
     fullValueLength?: number;
 }

@@ -3,7 +3,7 @@
  * @param depth Maxmal depth to expand nodes
  * @returns 
  */
-export const autoExpand: SonjReview.IAutoExpandPluginInitializer = (depth) => {
+export const autoExpand: JsonViewer.IAutoExpandPluginInitializer = (depth) => {
     return {
         afterRender: context => {
             if (depth && (context.node.path.length - 1 >= depth)) {

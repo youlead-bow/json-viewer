@@ -1,6 +1,6 @@
 
 
-export const sortProperties: SonjReview.IPropertyMenuItem = {
+export const sortProperties: JsonViewer.IPropertyMenuItem = {
     text: (ctx: ISortContext) => ctx.sortedAsc ? "Sort desc" : "Sort asc",
     isHidden: context => !context.node.isExpandable,
     onClick: (context: ISortContext) => {
@@ -30,6 +30,6 @@ export const sortProperties: SonjReview.IPropertyMenuItem = {
     }
 }
 
-interface ISortContext extends SonjReview.IPluginContext {
+interface ISortContext extends JsonViewer.IPluginContext {
     sortedAsc?: boolean;
 }
