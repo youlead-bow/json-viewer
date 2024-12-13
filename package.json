@@ -1,6 +1,6 @@
 {
   "name": "@youlead-bow/json-viewer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Extensible JSON Viewer",
   "main": "dist/json-viewer.es.js",
   "types": "src/index.d.ts",
